@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body> 
+  <h1>round 1</h1>   
+  <div id="imageContainer">
+    <img id="galleryImage" src="skzr1/001.png" alt="Gallery Image">
+  </div>
+  <div id="scoreDisplay">Score: 0</div>
+  <div id="timerDisplay">Timer: 15</div>
+
+  <button id="prevRoundButton">Previous Round</button>
+  <button id="nextRoundButton">Next Round</button>
+
+
+  
+  <script>
+    const numImages = 8;
+    const imagePathPrefix = 'skzr1';
+    const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 1).toString().padStart(3, '0')}.png`);
+    const timerDuration = 15; // Set the timer duration for this page
+    
+    const nextRoundButton = document.getElementById('nextRoundButton');
+      nextRoundButton.addEventListener('click', function () {
+        window.location.href = 'round2.html';
+      });
+    const prevRoundButton = document.getElementById('prevRoundButton');
+    prevRoundButton.addEventListener('click', function () {
+        window.location.href = 'round1.html';
+      });
+
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
