@@ -36,6 +36,7 @@ function startTimer() {
     if (timer <= 0) {
       clearInterval(timerInterval);
       // Timer has reached zero, perform any additional actions
+      window.location.href = 'round2.html';
       alert('Game Over! Your final score is ' + score);
     }
   }, 1000);
