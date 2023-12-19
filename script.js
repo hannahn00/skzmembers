@@ -36,25 +36,11 @@ function startTimer() {
     if (timer <= 0) {
       clearInterval(timerInterval);
       // Timer has reached zero, perform any additional actions
-      window.location.href = 'round2.html';
+      //window.location.href = 'round2.html';
       alert('Game Over! Your final score is ' + score);
     }
   }, 1000);
 }
-
-// Attach a keydown event listener to the document
-document.addEventListener('keydown', function (event) {
-  // Check if the pressed key is the space bar (key code 32)
-  if (event.keyCode === 32) {
-    // Call your function (e.g., changeImage) here
-    changeImage();
-
-    // If the timer is not running, start it
-    if (!timerInterval) {
-      startTimer();
-    }
-  }
-});
 
 // Initial score and timer display
 updateScoreDisplay();

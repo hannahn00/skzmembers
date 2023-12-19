@@ -22,7 +22,7 @@
   <button class="imageButton" data-image-id="008">Felix</button>
   <button class="imageButton" data-image-id="003">Seungmin</button>
   <button class="imageButton" data-image-id="001">IN</button>
-
+  <button class="imageButton" data-image-id="000">None</button>
 
   <button id="prevRoundButton">Previous Round</button>
   <button id="nextRoundButton">Next Round</button>
@@ -43,49 +43,48 @@
       window.location.href = 'round1.html';
     });
     
-    // Get all buttons with the class "imageButton"
-    const imageButtons = document.querySelectorAll('.imageButton');
-    let currentHighlightedButton = null;
+  // Get all buttons with the class "imageButton"
+  const imageButtons = document.querySelectorAll('.imageButton');
+  let currentHighlightedButton = null;
 
-    // Attach click event listeners to each button
-    imageButtons.forEach(button => {
+  // Attach click event listeners to each button
+  imageButtons.forEach(button => {
       button.addEventListener('click', function () {
-        const selectedImageId = button.dataset.imageId; // Get the data-image-id attribute
+      const selectedImageId = button.dataset.imageId; // Get the data-image-id attribute
 
-        // Reset the color of the previously highlighted button
-        if (currentHighlightedButton) {
-          currentHighlightedButton.style.backgroundColor = '';
-        }
-
-        // Check if the selected image ID matches the current image's ID
-        if (selectedImageId === getCurrentImageId()) {
-          // Set the style for a correct match (you can customize this part)
-          button.style.backgroundColor = 'green';
-          changeImage();
-          if (!timerInterval) {
-            startTimer();
+          // Reset the color of the previously highlighted button
+          if (currentHighlightedButton) {
+            currentHighlightedButton.style.backgroundColor = '';
           }
-        } else {
-          // Set the style for an incorrect match (you can customize this part)
-          button.style.backgroundColor = 'red';
-        }
 
-        // Set the currentHighlightedButton to the clicked button
-        currentHighlightedButton = button;
+          // Check if the selected image ID matches the current image's ID
+          if (selectedImageId === getCurrentImageId()) {
+            // Set the style for a correct match (you can customize this part)
+            button.style.backgroundColor = 'green';
+            changeImage();
+            if (!timerInterval) {
+              startTimer();
+            }
+          } else {
+            // Set the style for an incorrect match (you can customize this part)
+            button.style.backgroundColor = 'red';
+          }
 
-        // Reset button color after a short delay (e.g., 1000 milliseconds or 1 second)
-        setTimeout(() => {
-          button.style.backgroundColor = ''; // Reset to default color
-        }, 1000); // Adjust the delay as needed
+          // Set the currentHighlightedButton to the clicked button
+          currentHighlightedButton = button;
+
+          // Reset button color after a short delay (e.g., 1000 milliseconds or 1 second)
+          setTimeout(() => {
+            button.style.backgroundColor = ''; // Reset to default color
+          }, 1000); // Adjust the delay as needed
+        });
       });
-    });
+  function getCurrentImageId() {
+    const currentImageSrc = galleryImage.src;
+    const matches = currentImageSrc.match(/\/(\d{3})\.png$/);
+    return matches ? matches[1] : null;
+  }
 
-    // Function to get the current image's ID
-    function getCurrentImageId() {
-      const currentImageSrc = galleryImage.src;
-      const matches = currentImageSrc.match(/\/(\d{3})\.png$/);
-      return matches ? matches[1] : null;
-    }
   </script>
 
   <script src="script.js"></script>

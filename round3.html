@@ -13,13 +13,24 @@
   </div>
   <div id="scoreDisplay">Score: 0</div>
   <div id="timerDisplay">Timer: 9</div>
+  
+  <button class="imageButton" data-image-id="036 041">Bang Chan</button>
+  <button class="imageButton" data-image-id="031 038">Lee Know</button>
+  <button class="imageButton" data-image-id="035 040">Changbin</button>
+  <button class="imageButton" data-image-id="033 034">Hyunjin</button>
+  <button class="imageButton" data-image-id="039">Han</button>
+  <button class="imageButton" data-image-id="032">Felix</button>
+  <button class="imageButton" data-image-id="000">Seungmin</button>
+  <button class="imageButton" data-image-id="037 042">IN</button>
+
+  <!--might add a "who was missing?"- seungmin-->
 
   <button id="prevRoundButton">Previous Round</button>
   <button id="nextRoundButton">Next Round</button>
 
   
   <script>
-    const numImages = 13;
+    const numImages = 12;
     const imagePathPrefix = 'skzr3';
     const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 31).toString().padStart(3, '0')}.png`);
     const timerDuration = 9; // Set the timer duration for this page
@@ -33,9 +44,57 @@
     prevRoundButton.addEventListener('click', function () {
         window.location.href = 'round2.html';
       });
+    
+    // Get all buttons with the class "imageButton"
+    const imageButtons = document.querySelectorAll('.imageButton');
+    let currentHighlightedButton = null;
 
+    // Attach click event listeners to each button
+    imageButtons.forEach(button => {
+      let data = button.getAttribute("data-image-id");
+      let ids = data.split(" ");
 
+      button.addEventListener('click', function () {
+        // Get the current image ID as an array
+        const selectedImageIds = getCurrentImageIds();
+
+        // Reset the color of the previously highlighted button
+        if (currentHighlightedButton) {
+          currentHighlightedButton.style.backgroundColor = '';
+        }
+
+        // Check if the selected image ID matches the current image's ID
+        const isMatch = selectedImageIds.some(id => ids.includes(id));
+        
+        if (isMatch) {
+          // Set the style for a correct match (you can customize this part)
+          button.style.backgroundColor = 'green';
+          changeImage();
+          if (!timerInterval) {
+            startTimer();
+          }
+        } else {
+          // Set the style for an incorrect match (you can customize this part)
+          button.style.backgroundColor = 'red';
+        }
+
+        // Set the currentHighlightedButton to the clicked button
+        currentHighlightedButton = button;
+
+        // Reset button color after a short delay (e.g., 1000 milliseconds or 1 second)
+        setTimeout(() => {
+          button.style.backgroundColor = ''; // Reset to default color
+        }, 1000); // Adjust the delay as needed
+      });
+    });
+
+    // Function to get the current image's ID as an array
+    function getCurrentImageIds() {
+      const currentImageSrc = galleryImage.src;
+      const matches = currentImageSrc.match(/\/(\d{3})\.png$/); // Use \d{2} for two digits
+      return matches ? [matches[1]] : null; // Return as an array
+    }
   </script>
   <script src="script.js"></script>
-</body>
+  </body>
 </html>
