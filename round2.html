@@ -13,32 +13,89 @@
   </div>
   <div id="scoreDisplay">Score: 0</div>
   <div id="timerDisplay">Timer: 12</div>
+  
+  <button class="imageButton" data-image-id="21 26">Seungmin</button>
+  <button class="imageButton" data-image-id="22">Lee Know</button>
+  <button class="imageButton" data-image-id="23">Changbin</button>
+  <button class="imageButton" data-image-id="24">Bang Chan</button>
+  <button class="imageButton" data-image-id="25">Han</button>
+  <button class="imageButton" data-image-id="27 29">Felix</button>
+  <button class="imageButton" data-image-id="28">IN</button>
 
   <button id="prevRoundButton">Previous Round</button>
   <button id="nextRoundButton">Next Round</button>
+  
+<!-- ... your HTML code ... -->
 
-  <script>
-    const numImages = 9;
-    const imagePathPrefix = 'skzr2';
-    const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 21).toString().padStart(2, '0')}.png`);
-    const timerDuration = 12; // Set the timer duration for this page
-    
-    const nextRoundButton = document.getElementById('nextRoundButton');
-      nextRoundButton.addEventListener('click', function () {
-        // Navigate to "round2.html" when the button is clicked
-        window.location.href = 'round3.html';
-      });
-    const prevRoundButton = document.getElementById('prevRoundButton');
-    prevRoundButton.addEventListener('click', function () {
-        window.location.href = 'round1.html';
-      });
+<!-- ... your HTML code ... -->
 
+<script>
+  const numImages = 9;
+  const imagePathPrefix = 'skzr2';
+  const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 21).toString().padStart(2, '0')}.png`);
+  const timerDuration = 12; // Set the timer duration for this page
 
-  </script>
-  <script src="script.js"></script>
+  const nextRoundButton = document.getElementById('nextRoundButton');
+  nextRoundButton.addEventListener('click', function () {
+    // Navigate to "round2.html" when the button is clicked
+    window.location.href = 'round3.html';
+  });
+
+  const prevRoundButton = document.getElementById('prevRoundButton');
+  prevRoundButton.addEventListener('click', function () {
+    window.location.href = 'round1.html';
+  });
+
+  // Get all buttons with the class "imageButton"
+  const imageButtons = document.querySelectorAll('.imageButton');
+  let currentHighlightedButton = null;
+
+  // Attach click event listeners to each button
+  imageButtons.forEach(button => {
+    let data = button.getAttribute("data-image-id");
+    let ids = data.split(" ");
+
+    button.addEventListener('click', function () {
+      // Get the current image ID as an array
+      const selectedImageIds = getCurrentImageIds();
+
+      // Reset the color of the previously highlighted button
+      if (currentHighlightedButton) {
+        currentHighlightedButton.style.backgroundColor = '';
+      }
+
+      // Check if the selected image ID matches the current image's ID
+      const isMatch = selectedImageIds.some(id => ids.includes(id));
+      
+      if (isMatch) {
+        // Set the style for a correct match (you can customize this part)
+        button.style.backgroundColor = 'green';
+        changeImage();
+        if (!timerInterval) {
+          startTimer();
+        }
+      } else {
+        // Set the style for an incorrect match (you can customize this part)
+        button.style.backgroundColor = 'red';
+      }
+
+      // Set the currentHighlightedButton to the clicked button
+      currentHighlightedButton = button;
+
+      // Reset button color after a short delay (e.g., 1000 milliseconds or 1 second)
+      setTimeout(() => {
+        button.style.backgroundColor = ''; // Reset to default color
+      }, 1000); // Adjust the delay as needed
+    });
+  });
+
+  // Function to get the current image's ID as an array
+  function getCurrentImageIds() {
+    const currentImageSrc = galleryImage.src;
+    const matches = currentImageSrc.match(/\/(\d{2})\.png$/); // Use \d{2} for two digits
+    return matches ? [matches[1]] : null; // Return as an array
+  }
+</script>
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
-
