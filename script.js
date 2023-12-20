@@ -42,6 +42,7 @@ function startTimer() {
   }, 1000);
 }
 
+
 // Initial score and timer display
 updateScoreDisplay();
 updateTimerDisplay();

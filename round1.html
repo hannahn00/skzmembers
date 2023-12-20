@@ -12,7 +12,7 @@
     <img id="galleryImage" src="skzr1/001.png" alt="Gallery Image">
   </div>
   <div id="scoreDisplay">Score: 0</div>
-  <div id="timerDisplay">Timer: 15</div>
+  <div id="timerDisplay">Timer: 20</div>
 
   <button class="imageButton" data-image-id="004">Bang Chan</button>
   <button class="imageButton" data-image-id="002">Lee Know</button>
@@ -31,7 +31,8 @@
     const numImages = 8;
     const imagePathPrefix = 'skzr1';
     const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 1).toString().padStart(3, '0')}.png`);
-    const timerDuration = 15; // Set the timer duration for this page
+    shuffleArray(images); // Shuffle the array
+    const timerDuration = 20; // Set the timer duration for this page
     
     const nextRoundButton = document.getElementById('nextRoundButton');
     nextRoundButton.addEventListener('click', function () {
@@ -43,14 +44,14 @@
       window.location.href = 'round1.html';
     });
     
-  // Get all buttons with the class "imageButton"
-  const imageButtons = document.querySelectorAll('.imageButton');
-  let currentHighlightedButton = null;
+    // Get all buttons with the class "imageButton"
+    const imageButtons = document.querySelectorAll('.imageButton');
+    let currentHighlightedButton = null;
 
-  // Attach click event listeners to each button
-  imageButtons.forEach(button => {
-      button.addEventListener('click', function () {
-      const selectedImageId = button.dataset.imageId; // Get the data-image-id attribute
+    // Attach click event listeners to each button
+    imageButtons.forEach(button => {
+        button.addEventListener('click', function () {
+        const selectedImageId = button.dataset.imageId; // Get the data-image-id attribute
 
           // Reset the color of the previously highlighted button
           if (currentHighlightedButton) {
@@ -84,6 +85,15 @@
     const matches = currentImageSrc.match(/\/(\d{3})\.png$/);
     return matches ? matches[1] : null;
   }
+
+  // Function to shuffle the array randomly
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
 
   </script>
 

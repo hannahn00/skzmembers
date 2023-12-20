@@ -12,7 +12,7 @@
     <img id="galleryImage" src="skzr5/51.png" alt="Gallery Image">
   </div>
   <div id="scoreDisplay">Score: 0</div>
-  <div id="timerDisplay">Timer: 3</div>
+  <div id="timerDisplay">Timer: 5</div>
 
   <button class="imageButton" data-image-id="63">Bang Chan</button>
   <button class="imageButton" data-image-id="51 69">Lee Know</button>
@@ -31,7 +31,8 @@
     const numImages = 22;
     const imagePathPrefix = 'skzr5';
     const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 51).toString().padStart(2, '0')}.png`);
-    const timerDuration = 3; // Set the timer duration for this page
+    shuffleArray(images);
+    const timerDuration = 5; // Set the timer duration for this page
     
     const nextRoundButton = document.getElementById('nextRoundButton');
       nextRoundButton.addEventListener('click', function () {
@@ -92,6 +93,15 @@
       const matches = currentImageSrc.match(/\/(\d{2})\.png$/); // Use \d{2} for two digits
       return matches ? [matches[1]] : null; // Return as an array
     }
+
+      // Function to shuffle the array randomly
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
   </script>
   <script src="script.js"></script>
 </body>
