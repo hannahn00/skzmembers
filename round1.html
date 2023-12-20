@@ -7,25 +7,35 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body> 
-  <h1>round 1</h1>   
+  <div id="heading">
+    <h1>ROUND 1</h1>   
+    <div id="timerDisplay">timer: 20</div>
+    <div id="scoreDisplay">score: 0</div>
+  </div>
+  <br><br>
   <div id="imageContainer">
     <img id="galleryImage" src="skzr1/001.png" alt="Gallery Image">
   </div>
-  <div id="scoreDisplay">Score: 0</div>
-  <div id="timerDisplay">Timer: 20</div>
+  <br><br><br><br>
+  <div id="imgbuttons">
+    <button class="imageButton" data-image-id="004">Bang Chan</button>
+    <button class="imageButton" data-image-id="002">Lee Know</button>
+    <button class="imageButton" data-image-id="006">Changbin</button><br><br>
+    <button class="imageButton" data-image-id="005">Hyunjin</button>
+    <button class="imageButton" data-image-id="007">Han</button>
+    <button class="imageButton" data-image-id="008">Felix</button><br><br>
+    <button class="imageButton" data-image-id="003">Seungmin</button>
+    <button class="imageButton" data-image-id="001">IN</button>
+    <button class="imageButton" data-image-id="000">None</button>
+  </div>
+  <br><br>
 
-  <button class="imageButton" data-image-id="004">Bang Chan</button>
-  <button class="imageButton" data-image-id="002">Lee Know</button>
-  <button class="imageButton" data-image-id="006">Changbin</button>
-  <button class="imageButton" data-image-id="005">Hyunjin</button>
-  <button class="imageButton" data-image-id="007">Han</button>
-  <button class="imageButton" data-image-id="008">Felix</button>
-  <button class="imageButton" data-image-id="003">Seungmin</button>
-  <button class="imageButton" data-image-id="001">IN</button>
-  <button class="imageButton" data-image-id="000">None</button>
-
-  <button id="prevRoundButton">Previous Round</button>
-  <button id="nextRoundButton">Next Round</button>
+  <div id="dirbuttons">
+    <button id="prevRoundButton">Previous Round</button>
+    <button id="nextRoundButton">Next Round</button>
+    <button id="pausedButton">Pause</button>
+    <button id="startButton">Start</button>
+  </div>
 
   <script>
     const numImages = 8;
@@ -61,7 +71,7 @@
           // Check if the selected image ID matches the current image's ID
           if (selectedImageId === getCurrentImageId()) {
             // Set the style for a correct match (you can customize this part)
-            button.style.backgroundColor = 'green';
+            button.style.backgroundColor = 'rgb(152, 251, 152)';
             changeImage();
             if (!timerInterval) {
               startTimer();
@@ -93,7 +103,6 @@
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
-
 
   </script>
 

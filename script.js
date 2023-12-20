@@ -27,6 +27,41 @@ function updateTimerDisplay() {
   timerDisplay.textContent = `Timer: ${timer}`;
 }
 
+function resetGame() {
+  // Reset variables to initial values
+  currentIndex = 0;
+  score = 0;
+  timer = timerDuration;
+
+  // Update displays
+  updateScoreDisplay();
+  updateTimerDisplay();
+
+  // Start the timer again
+  startTimer();
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timer--;
+    updateTimerDisplay();
+
+    if (timer <= 0) {
+      clearInterval(timerInterval);
+
+      // Check if the score is at least 20
+      if (score >= 20) {
+        alert('Game Over! Your final score is ' + score);
+      } else {
+        // Score is less than 20, restart the round
+        alert('Score less than 20. Restarting the round.');
+        resetGame();
+      }
+    }
+  }, 1000);
+}
+
+/*
 // Function to start the timer
 function startTimer() {
   timerInterval = setInterval(() => {
@@ -35,13 +70,11 @@ function startTimer() {
 
     if (timer <= 0) {
       clearInterval(timerInterval);
-      // Timer has reached zero, perform any additional actions
-      //window.location.href = 'round2.html';
       alert('Game Over! Your final score is ' + score);
     }
   }, 1000);
 }
-
+*/
 
 // Initial score and timer display
 updateScoreDisplay();
