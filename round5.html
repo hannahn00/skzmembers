@@ -37,6 +37,7 @@
 
   <div id="dirButtons">
     <button id="prevRoundButton"><img src='leftarrow.png'></button>
+    <button id="nextRoundButton"><img src='rightarrow.png'></button>
   </div>
 
   <script>
@@ -47,13 +48,13 @@
     shuffleArray(images);
     const timerDuration = 5; // Set the timer duration for this page
     
-    /*
+    
     const nextRoundButton = document.getElementById('nextRoundButton');
       nextRoundButton.addEventListener('click', function () {
         currentRound++;
         window.location.href = 'round' + currentRound + '.html';
       });
-    */
+    
 
     const prevRoundButton = document.getElementById('prevRoundButton');
     prevRoundButton.addEventListener('click', function () {
