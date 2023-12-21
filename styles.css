@@ -111,3 +111,26 @@ button, .imageButton {
   height: 45px; /* Adjust the height as needed */
 }
 
+#skzright {
+  width: 750px;
+  margin-left: 450px;
+  margin-top: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999; /* Ensure it appears above other elements */
+  opacity: 1; /* Adjust the opacity as needed */
+}
+
+#skzleft {
+  width: 750px;
+  margin-left: -350px;
+  margin-top: 100px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999; /* Ensure it appears above other elements */
+  opacity: 1; /* Adjust the opacity as needed */
+}
