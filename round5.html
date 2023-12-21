@@ -7,42 +7,71 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>round 5</h1>       
+  <div id="heading"> 
+    <div id="timerDisplay">timer: 5</div>
+    <div id="scoreDisplay">score: 0</div>
+    <button id="startButton">Start</button>
+    <button id="restartButton">Restart</button>
+  </div> 
+
+  <h1>ROUND 5</h1> 
+
+
+  <br><br>
   <div id="imageContainer">
     <img id="galleryImage" src="skzr5/51.png" alt="Gallery Image">
   </div>
-  <div id="scoreDisplay">Score: 0</div>
-  <div id="timerDisplay">Timer: 5</div>
+  <br><br>
 
-  <button class="imageButton" data-image-id="63">Bang Chan</button>
-  <button class="imageButton" data-image-id="51 69">Lee Know</button>
-  <button class="imageButton" data-image-id="00">Changbin</button>
-  <button class="imageButton" data-image-id="53 57 66">Hyunjin</button>
-  <button class="imageButton" data-image-id="60">Han</button>
-  <button class="imageButton" data-image-id="52 59 71">Felix</button>
-  <button class="imageButton" data-image-id="70">Seungmin</button>
-  <button class="imageButton" data-image-id="54 65">IN</button>
-  <button class="imageButton" data-image-id="55 56 58 61 62 64 67 68 72">None</button>
+  <div id="imgbuttons">
+    <button class="imageButton" data-image-id="63">Bang Chan</button>
+    <button class="imageButton" data-image-id="51 69">Lee Know</button>
+    <button class="imageButton" data-image-id="00">Changbin</button><br><br>
+    <button class="imageButton" data-image-id="53 57 66">Hyunjin</button>
+    <button class="imageButton" data-image-id="60">Han</button>
+    <button class="imageButton" data-image-id="52 59 71">Felix</button><br><br>
+    <button class="imageButton" data-image-id="70">Seungmin</button>
+    <button class="imageButton" data-image-id="54 65">IN</button>
+    <button class="imageButton" data-image-id="55 56 58 61 62 64 67 68 72">None</button>
+  </div>
 
-  <button id="prevRoundButton">Previous Round</button>
-  <button id="nextRoundButton">Back to the start</button>
+  <div id="dirButtons">
+    <button id="prevRoundButton"><img src='leftarrow.png'></button>
+  </div>
 
   <script>
+    let currentRound = 5;
     const numImages = 22;
     const imagePathPrefix = 'skzr5';
     const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 51).toString().padStart(2, '0')}.png`);
     shuffleArray(images);
     const timerDuration = 5; // Set the timer duration for this page
     
+    /*
     const nextRoundButton = document.getElementById('nextRoundButton');
       nextRoundButton.addEventListener('click', function () {
-        // Navigate to "round2.html" when the button is clicked
-        window.location.href = 'round1.html';
+        currentRound++;
+        window.location.href = 'round' + currentRound + '.html';
       });
+    */
+
     const prevRoundButton = document.getElementById('prevRoundButton');
     prevRoundButton.addEventListener('click', function () {
-        window.location.href = 'round4.html';
+        currentRound--;
+        window.location.href = 'round' + currentRound + '.html';
       });
+    
+    const startButton = document.getElementById('startButton');
+    startButton.addEventListener('click', function () {
+      if (!timerInterval) {
+              startTimer();
+      }
+    });
+
+    const restartButton = document.getElementById('restartButton');
+    restartButton.addEventListener('click', function () {
+      window.location.href = 'round' + currentRound + '.html';
+    });
     
       // Get all buttons with the class "imageButton"
     const imageButtons = document.querySelectorAll('.imageButton');
@@ -67,7 +96,7 @@
         
         if (isMatch) {
           // Set the style for a correct match (you can customize this part)
-          button.style.backgroundColor = 'green';
+          button.style.backgroundColor = 'rgb(152, 251, 152';
           changeImage();
           if (!timerInterval) {
             startTimer();

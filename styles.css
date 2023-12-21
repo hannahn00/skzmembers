@@ -90,3 +90,25 @@ button, .imageButton {
   box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
   outline: 0;
 }
+
+#dirButtons {
+  display: flex;
+  align-items: center;
+  margin-right: 1250px;
+}
+
+#nextRoundButton,
+#prevRoundButton {
+  color: white;
+  border: none;
+  margin-bottom: 10px;
+  background-color: rgb(233, 111, 156);
+
+}
+
+#prevRoundButton img,
+#nextRoundButton img {
+  width: 45px; /* Adjust the width as needed */
+  height: 45px; /* Adjust the height as needed */
+}
+

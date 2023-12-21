@@ -6,45 +6,80 @@
   <title>Image Gallery</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+  body {
+     background-color: rgb(124, 220, 124);
+  }
+  #nextRoundButton,
+  #prevRoundButton {
+    background-color: rgb(124, 220, 124);
+  }
+
+</style>
 <body>
-  <h1>round 2</h1>       
+  <div id="heading"> 
+    <div id="timerDisplay">Timer: 15</div>
+    <div id="scoreDisplay">Score: 0</div>
+    <button id="startButton">Start</button>
+    <button id="restartButton">Restart</button>
+  </div>
+  <h1>ROUND 2</h1>
+  
+  <br><br>
   <div id="imageContainer">
     <img id="galleryImage" src="skzr2/21.png" alt="Gallery Image">
   </div>
-  <div id="scoreDisplay">Score: 0</div>
-  <div id="timerDisplay">Timer: 15</div>
-  
-  <button class="imageButton" data-image-id="24">Bang Chan</button>
-  <button class="imageButton" data-image-id="22">Lee Know</button>
-  <button class="imageButton" data-image-id="23">Changbin</button>
-  <button class="imageButton" data-image-id="000">Hyunjin</button>
-  <button class="imageButton" data-image-id="25">Han</button>
-  <button class="imageButton" data-image-id="27 29">Felix</button>
-  <button class="imageButton" data-image-id="21 26">Seungmin</button>
-  <button class="imageButton" data-image-id="28">IN</button>
-  <button class="imageButton" data-image-id="001">None</button>
+  <br><br>
+  <div id="imgbuttons">
+    <button class="imageButton" data-image-id="24">Bang Chan</button>
+    <button class="imageButton" data-image-id="22">Lee Know</button>
+    <button class="imageButton" data-image-id="23">Changbin</button><br><br>
+    <button class="imageButton" data-image-id="000">Hyunjin</button>
+    <button class="imageButton" data-image-id="25">Han</button>
+    <button class="imageButton" data-image-id="27 29">Felix</button><br><br>
+    <button class="imageButton" data-image-id="21 26">Seungmin</button>
+    <button class="imageButton" data-image-id="28">IN</button>
+    <button class="imageButton" data-image-id="001">None</button>
+  </div>
 
+  <div id="dirButtons">
+    <button id="prevRoundButton"><img src='leftarrow.png'></button>
+    <button id="nextRoundButton"><img src='rightarrow.png'></button>
+  </div>
 
-  <button id="prevRoundButton">Previous Round</button>
-  <button id="nextRoundButton">Next Round</button>
   
 <script>
+  let currentRound = 2;
   const numImages = 9;
   const imagePathPrefix = 'skzr2';
   const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 21).toString().padStart(2, '0')}.png`);
   shuffleArray(images);
   const timerDuration = 15; // Set the timer duration for this page
-
+  
   const nextRoundButton = document.getElementById('nextRoundButton');
-  nextRoundButton.addEventListener('click', function () {
-    // Navigate to "round2.html" when the button is clicked
-    window.location.href = 'round3.html';
-  });
+      nextRoundButton.addEventListener('click', function () {
+        currentRound++;
+        window.location.href = 'round' + currentRound + '.html';
+      });
+      
+    const prevRoundButton = document.getElementById('prevRoundButton');
+    prevRoundButton.addEventListener('click', function () {
+        currentRound--;
+        window.location.href = 'round' + currentRound + '.html';
+      });
 
-  const prevRoundButton = document.getElementById('prevRoundButton');
-  prevRoundButton.addEventListener('click', function () {
-    window.location.href = 'round1.html';
-  });
+  const startButton = document.getElementById('startButton');
+    startButton.addEventListener('click', function () {
+      if (!timerInterval) {
+              startTimer();
+      }
+    });
+
+    const restartButton = document.getElementById('restartButton');
+    restartButton.addEventListener('click', function () {
+      window.location.href = 'round' + currentRound + '.html';
+    });
+
 
   // Get all buttons with the class "imageButton"
   const imageButtons = document.querySelectorAll('.imageButton');
@@ -69,7 +104,7 @@
       
       if (isMatch) {
         // Set the style for a correct match (you can customize this part)
-        button.style.backgroundColor = 'green';
+        button.style.backgroundColor = 'rgb(152, 251, 152)';
         changeImage();
         if (!timerInterval) {
           startTimer();
