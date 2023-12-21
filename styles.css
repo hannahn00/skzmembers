@@ -7,33 +7,46 @@ body {
   flex-direction: column;
   background-color: rgb(233, 111, 156);
   color: white;
+  overflow: hidden;
 }
 
 h1 {
-  font-size: 100px;
+  font-size: 80px;
+  margin-bottom: 10px; /* Adjust the margin as needed */
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 
 #heading {
-  font-size: 50px;
+  font-size: 30px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
   font-family: Arial, Helvetica, sans-serif;
+  margin-top: 1px;
+  margin-left: 900px;
+  margin-bottom: 2px;
+}
+
+#timerDisplay,
+#scoreDisplay {
+  margin-right: 15px; /* Adjust the margin as needed */
 }
 
 #imageContainer {
   position: relative;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
+
 #galleryImage {
-  width: 310px;
-  height: 340px;
+  width: 210px;
+  height: 240px;
   cursor: pointer;
 }
+
 
 .imgbuttons {
   display: flex;
@@ -42,7 +55,7 @@ h1 {
   justify-content: center;
 }
 
-.imageButton {
+button, .imageButton {
   background-color: #fff;
   border: 1px solid #d5d9d9;
   border-radius: 8px;
@@ -51,14 +64,14 @@ h1 {
   cursor: pointer;
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 28px;
+  font-size: 12.6px;
   font-weight: bold;
   line-height: 29px;
   padding: 0 10px 0 11px;
   position: relative;
   text-align: center;
-  width: 150px;
-  height: 100px;
+  width: 90px;
+  height: 40px;
   text-decoration: none;
   margin-left: 5px;
 

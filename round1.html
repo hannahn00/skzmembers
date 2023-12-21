@@ -7,16 +7,20 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body> 
-  <div id="heading">
-    <h1>ROUND 1</h1>   
-    <div id="timerDisplay">timer: 20</div>
-    <div id="scoreDisplay">score: 0</div>
-  </div>
+  <br>
+  <div id="heading"> 
+    <div id="timerDisplay">timer: 20   </div>
+    <div id="scoreDisplay">score: 0   </div>
+    <button id="startButton">Start</button>
+    <button id="restartButton">Restart</button>
+  </div> 
+  <h1>ROUND 1</h1> 
+
   <br><br>
   <div id="imageContainer">
     <img id="galleryImage" src="skzr1/001.png" alt="Gallery Image">
   </div>
-  <br><br><br><br>
+  <br><br>
   <div id="imgbuttons">
     <button class="imageButton" data-image-id="004">Bang Chan</button>
     <button class="imageButton" data-image-id="002">Lee Know</button>
@@ -30,12 +34,12 @@
   </div>
   <br><br>
 
+  <!--
   <div id="dirbuttons">
     <button id="prevRoundButton">Previous Round</button>
     <button id="nextRoundButton">Next Round</button>
-    <button id="pausedButton">Pause</button>
-    <button id="startButton">Start</button>
   </div>
+    -->
 
   <script>
     const numImages = 8;
@@ -53,7 +57,19 @@
     prevRoundButton.addEventListener('click', function () {
       window.location.href = 'round1.html';
     });
-    
+
+    const startButton = document.getElementById('startButton');
+    startButton.addEventListener('click', function () {
+      if (!timerInterval) {
+              startTimer();
+      }
+    });
+
+    const restartButton = document.getElementById('restartButton');
+    restartButton.addEventListener('click', function () {
+      window.location.href = 'round1.html';
+    });
+
     // Get all buttons with the class "imageButton"
     const imageButtons = document.querySelectorAll('.imageButton');
     let currentHighlightedButton = null;
@@ -109,3 +125,133 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body> 
+  <br>
+  <div id="heading">
+    <h1>ROUND 1</h1>   
+    <div id="timerDisplay">timer: 20</div>
+    <div id="scoreDisplay">score: 0</div>
+    <button id="startButton">Start</button>
+    <button id="restartButton">Restart</button>
+
+  </div>
+  <br><br>
+  <div id="imageContainer">
+    <img id="galleryImage" src="skzr1/001.png" alt="Gallery Image">
+  </div>
+  <br><br>
+  <div id="imgbuttons">
+    <button class="imageButton" data-image-id="004">Bang Chan</button>
+    <button class="imageButton" data-image-id="002">Lee Know</button>
+    <button class="imageButton" data-image-id="006">Changbin</button><br><br>
+    <button class="imageButton" data-image-id="005">Hyunjin</button>
+    <button class="imageButton" data-image-id="007">Han</button>
+    <button class="imageButton" data-image-id="008">Felix</button><br><br>
+    <button class="imageButton" data-image-id="003">Seungmin</button>
+    <button class="imageButton" data-image-id="001">IN</button>
+    <button class="imageButton" data-image-id="000">None</button>
+  </div>
+  <br><br>
+
+  <div id="dirbuttons">
+    <button id="prevRoundButton">Previous Round</button>
+    <button id="nextRoundButton">Next Round</button>
+  </div>
+
+  <script>
+    const numImages = 8;
+    const imagePathPrefix = 'skzr1';
+    const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 1).toString().padStart(3, '0')}.png`);
+    shuffleArray(images); // Shuffle the array
+    const timerDuration = 20; // Set the timer duration for this page
+    let timerInterval;
+    
+    const nextRoundButton = document.getElementById('nextRoundButton');
+    nextRoundButton.addEventListener('click', function () {
+      window.location.href = 'round2.html';
+    });
+
+    const prevRoundButton = document.getElementById('prevRoundButton');
+    prevRoundButton.addEventListener('click', function () {
+      window.location.href = 'round1.html';
+    });
+    
+    const startButton = document.getElementById('startButton');
+    startButton.addEventListener('click', function () {
+      if (!timerInterval) {
+              startTimer();
+      }
+    });
+
+    const restartButton = document.getElementById('restartButton');
+    restartButton.addEventListener('click', function () {
+      resetGame()
+    });
+
+    // Get all buttons with the class "imageButton"
+    const imageButtons = document.querySelectorAll('.imageButton');
+    let currentHighlightedButton = null;
+
+    // Attach click event listeners to each button
+    imageButtons.forEach(button => {
+        button.addEventListener('click', function () {
+        const selectedImageId = button.dataset.imageId; // Get the data-image-id attribute
+
+          // Reset the color of the previously highlighted button
+          if (currentHighlightedButton) {
+            currentHighlightedButton.style.backgroundColor = '';
+          }
+
+          // Check if the selected image ID matches the current image's ID
+          if (selectedImageId === getCurrentImageId()) {
+            // Set the style for a correct match (you can customize this part)
+            button.style.backgroundColor = 'rgb(152, 251, 152)';
+            changeImage();
+            if (!timerInterval) {
+              startTimer();
+            }
+          } else {
+            // Set the style for an incorrect match (you can customize this part)
+            button.style.backgroundColor = 'red';
+          }
+
+          // Set the currentHighlightedButton to the clicked button
+          currentHighlightedButton = button;
+
+          // Reset button color after a short delay (e.g., 1000 milliseconds or 1 second)
+          setTimeout(() => {
+            button.style.backgroundColor = ''; // Reset to default color
+          }, 1000); // Adjust the delay as needed
+        });
+      });
+  function getCurrentImageId() {
+    const currentImageSrc = galleryImage.src;
+    const matches = currentImageSrc.match(/\/(\d{3})\.png$/);
+    return matches ? matches[1] : null;
+  }
+
+  // Function to shuffle the array randomly
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
+-->
+
