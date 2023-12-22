@@ -121,6 +121,7 @@ button, .imageButton {
   transform: translate(-50%, -50%);
   z-index: 999; /* Ensure it appears above other elements */
   opacity: 1; /* Adjust the opacity as needed */
+  pointer-events: none;
 }
 
 #skzleft {
@@ -133,4 +134,5 @@ button, .imageButton {
   transform: translate(-50%, -50%);
   z-index: 999; /* Ensure it appears above other elements */
   opacity: 1; /* Adjust the opacity as needed */
+  pointer-events: none;
 }

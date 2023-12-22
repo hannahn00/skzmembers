@@ -11,7 +11,7 @@
   <img id='skzleft' src="seung5left.png">
 
   <div id="heading"> 
-    <div id="timerDisplay">timer: 5</div>
+    <div id="timerDisplay">timer: 12</div>
     <div id="scoreDisplay">score: 0</div>
     <button id="startButton">Start</button>
     <button id="restartButton">Restart</button>
@@ -49,7 +49,7 @@
     const imagePathPrefix = 'skzr5';
     const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 51).toString().padStart(2, '0')}.png`);
     shuffleArray(images);
-    const timerDuration = 5; // Set the timer duration for this page
+    const timerDuration = 12; // Set the timer duration for this page
     
     
     const nextRoundButton = document.getElementById('nextRoundButton');

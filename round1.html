@@ -46,7 +46,6 @@
     <button id="nextRoundButton"><img src='rightarrow.png'></button>
   </div>
 
-
   <script>
     let currentRound = 1;
     const numImages = 8;
@@ -118,11 +117,22 @@
         });
       });
   
+
+  function getCurrentImageId() {
+    const currentImageSrc = galleryImage.src;
+    const matches = currentImageSrc.match(/\/(\d{3})\.png$/);
+    const imageId = matches ? matches[1] : null;
+    console.log('Current Image ID:', imageId);
+    return imageId;
+  }
+
+  /*
   function getCurrentImageId() {
     const currentImageSrc = galleryImage.src;
     const matches = currentImageSrc.match(/\/(\d{3})\.png$/);
     return matches ? matches[1] : null;
   }
+  */
 
   // Function to shuffle the array randomly
   function shuffleArray(array) {

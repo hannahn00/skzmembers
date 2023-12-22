@@ -10,7 +10,7 @@
   <img id='skzright' src="ji3right.png">
 
   <div id="heading"> 
-    <div id="timerDisplay">timer: 10</div>
+    <div id="timerDisplay">timer: 16</div>
     <div id="scoreDisplay">score: 0</div>
     <button id="startButton">Start</button>
     <button id="restartButton">Restart</button>
@@ -50,7 +50,7 @@
     const imagePathPrefix = 'skzr3';
     const images = Array.from({ length: numImages }, (_, i) => `${imagePathPrefix}/${(i + 31).toString().padStart(3, '0')}.png`);
     shuffleArray(images);
-    const timerDuration = 10; // Set the timer duration for this page
+    const timerDuration = 16; // Set the timer duration for this page
     
     const nextRoundButton = document.getElementById('nextRoundButton');
       nextRoundButton.addEventListener('click', function () {
